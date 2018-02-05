@@ -10,8 +10,8 @@ env:
 phases:
   pre_build:
     commands:
-      - echo Substitute variables in package.json...
-      - sed -i 's/FAKE_PASSWORD/$FAKE_PASSWORD/g' package.json
+      - echo Substitute variables in package.json...$FAKE_PASSWORD
+      - sed -i "s/FAKE_PASSWORD/$FAKE_PASSWORD/g" package.json
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region eu-central-1 --no-include-email)
