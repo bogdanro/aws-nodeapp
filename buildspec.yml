@@ -11,7 +11,7 @@ phases:
   pre_build:
     commands:
       - echo Build env file ...
-      - sed -i 's/ssmFAKE_PASSWORD/$FAKE_PASSWORD/g' .env
+      - sed -i "s/ssmFAKE_PASSWORD/$FAKE_PASSWORD/g" .env
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region eu-central-1 --no-include-email)
