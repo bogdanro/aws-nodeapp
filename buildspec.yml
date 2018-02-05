@@ -10,6 +10,9 @@ env:
 phases:
   pre_build:
     commands:
+      - echo Build env file ...
+      - chmod +x gen_env.sh
+      - gen_env.sh
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region eu-central-1 --no-include-email)
