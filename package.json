@@ -5,7 +5,7 @@
   "author": "First Last <first.last@example.com>",
   "main": "server.js",
   "scripts": {
-    "build": "node test.js > public_dir/index.html",
+    "build": "cat .env > public_dir/index.html",
     "start": "nf start"
   },
   "dependencies": {
