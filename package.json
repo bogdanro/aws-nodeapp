@@ -5,7 +5,7 @@
   "author": "First Last <first.last@example.com>",
   "main": "server.js",
   "scripts": {
-    "build": "echo FAKE_PASSWORD > public_dir/index.html",
+    "build": "node test.js > public_dir/index.html",
     "start": "node server.js"
   },
   "dependencies": {
