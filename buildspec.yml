@@ -1,8 +1,17 @@
 version: 0.2
 
+
+env:
+  variables:
+    TEST_VARIABLE: "pipa_pacii"
+  parameter-store:
+    FAKE_PASSWORD: "/project1/service1/production/dbpassword"
+
 phases:
   pre_build:
     commands:
+      - echo Substitute variables in package.json...
+      - sed -i 's/FAKE_PASSWORD/$FAKE_PASSWORD/g' package.json
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region eu-central-1 --no-include-email)

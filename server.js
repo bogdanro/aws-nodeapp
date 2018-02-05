@@ -8,8 +8,9 @@ const express = require('express');
 
 // App
  const app = express();
+ app.use(express.static(__dirname + '/public_dir'))
  app.get('/', (req, res) => {
-   res.send('Hello world\n');
+   res.send('Hello');
    });
 
    app.listen(PORT, HOST);
