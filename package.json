@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "build": "node test.js > public_dir/index.html",
-    "start": "node server.js"
+    "start": "nf start"
   },
   "dependencies": {
     "express": "*",
@@ -14,6 +14,7 @@
     "body-parser": "*",
     "ejs": "*",
     "lerna": "*", 
-    "aws-param-store": "*"
+    "aws-param-store": "*",
+    "@heroku/foreman": "*"
   }
 }
