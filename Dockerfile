@@ -9,6 +9,7 @@ COPY .env ./
 RUN mkdir public_dir
 RUN yarn install
 RUN yarn build
+RUN yarn global add @heroku/foreman
 COPY . .
 EXPOSE 8080
-CMD [ "npm", "start" ]
+CMD [ "nf", "start" ]

@@ -14,8 +14,8 @@ phases:
       - sed -i "s/ssmFAKE_PASSWORD/$FAKE_PASSWORD/g" .env
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --region eu-central-1 --no-include-email)
-      - REPOSITORY_URI=308331455103.dkr.ecr.eu-central-1.amazonaws.com/demoapp/fe
+      - $(aws ecr get-login --region eu-west-1 --no-include-email)
+      - REPOSITORY_URI=409092538980.dkr.ecr.eu-west-1.amazonaws.com/testnodeapp/node8
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
@@ -30,7 +30,7 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"demoapp_prod-fe","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"testnodeapp-service","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
