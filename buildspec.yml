@@ -10,8 +10,8 @@ env:
 phases:
   pre_build:
     commands:
-      - echo Build env file ...
-      - sed -i "s/ssmFAKE_PASSWORD/$FAKE_PASSWORD/g" .env
+      - echo Get variables file from S3 bucket ...
+      - aws s3 cp s3://codebuild-eu-west-1-8fpki2w21qua8v8y/8fpki2w21qua8v8y.txt .env
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region eu-west-1 --no-include-email)
@@ -31,6 +31,5 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
       - printf '[{"name":"testnodeapp-fe","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - cat imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
